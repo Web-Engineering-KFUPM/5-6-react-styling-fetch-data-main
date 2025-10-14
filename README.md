@@ -1,4 +1,4 @@
-# User Management Dashboard Lab
+# React Lab: User Management Dashboard
 
 ## Overview
 In this lab, students will learn to:

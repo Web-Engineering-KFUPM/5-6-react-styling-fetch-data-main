@@ -51,8 +51,8 @@ Files to edit:
 TODO 1.1: Add Layout Containers  
    File: App.jsx  
    Tag: <Header>, <Container> (search bar container), <Footer>
-   - Wrap header, content, and footer in separate <Container> tags.
-   - Use Bootstrap spacing classes like py-3, mb-4, mt-5 for padding/margin.
+   - Look for the empty className="" attribute inside header, Container, and footer elements. 
+   - Add Bootstrap spacing classes like py-3, mb-4, mt-5 for padding/margin.
 
 --------------------------------------------------------------
 TODO 1.2: Style the Header Section  
@@ -91,9 +91,9 @@ TODO 1.4: Display User Cards in Grid
 TODO 1.5: Add bootstrap properties in User Card  
    File: src/components/UserCard.jsx 
 
-   - Use <Button> components from React-Bootstrap inside the </Card.Body> tag.
+   - Use <Button> components from react-bootstrap inside the </Card.Body> tag.
    - Write text of the button View Details. 
-   - Add onlcik function in the button onClick={() => onUserClick(user)}.
+   - Add onClick function in the button onClick={() => onUserClick(user)}.
 
 --------------------------------------------------------------
 TODO 1.6: Add User Details Modal  
@@ -117,7 +117,7 @@ TODO 1.6: Add User Details Modal
       </Modal>
 
 --------------------------------------------------------------
-TODO 2.7: Add Footer  
+TODO 1.7: Add Footer  
    File: App.jsx  
    Tag: <footer>
    Add Bootstrap classes:

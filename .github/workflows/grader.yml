@@ -54,7 +54,7 @@ jobs:
         if: always()
         run: |
           echo "=== feedback.txt ==="
-          head -n 200 script/feedback.txt || true
+          head -n 200 5-6-react-styling-fetch-data/script/feedback.txt || true
 
       - name: Upload feedback artifact
         if: always()
@@ -62,10 +62,5 @@ jobs:
         with:
           name: autograder-feedback
           path: |
-            script/feedback.txt
-            script/grade.json
-
-      - name: Fail job if score below threshold (optional)
-        if: always()
-        run: |
-          echo "Grader finished. feedback artifact uploaded."
+            5-6-react-styling-fetch-data/script/feedback.txt
+            5-6-react-styling-fetch-data/script/grade.json

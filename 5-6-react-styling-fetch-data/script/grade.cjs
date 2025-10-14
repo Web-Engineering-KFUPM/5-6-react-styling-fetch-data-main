@@ -289,7 +289,7 @@ lines.push(`Task 1 (Components & Layout): ${t1.points}/${task1Max}`);
 lines.push(`Task 2 (CSS Styling): ${t2.points}/${task2Max}`);
 lines.push(`Task 3 (Hooks & Fetch): ${t3.points}/${task3Max}`);
 lines.push('');
-lines.push(`Raw tasks score (with attempt floor rule applied): ${rawTasksScore}/${tasksPossible}`);
+lines.push(`Raw tasks score: ${rawTasksScore}/${tasksPossible}`);
 lines.push(`Submission points: ${submissionPoints}/20`);
 lines.push(`Submission note: ${submissionNote}`);
 lines.push('');

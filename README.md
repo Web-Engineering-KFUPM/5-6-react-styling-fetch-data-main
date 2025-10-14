@@ -1,7 +1,7 @@
 # React Lab: User Management Dashboard
 
 ## Note
-Note: Follow the App.jsx file to implement the lab.
+Follow the App.jsx file to implement the lab.
 
 ## Overview
 In this lab, students will learn to:

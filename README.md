@@ -1,16 +1,122 @@
-# React + Vite
+# User Management Dashboard Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+In this lab, students will learn to:
+- Apply custom CSS styling to React components.
+- Use Bootstrap and React-Bootstrap components for layout and UI.
+- Fetch and display data from an API using React hooks (`useState` and `useEffect`).
 
-Currently, two official plugins are available:
+## Reading Assignment
+- [**5.15 Styling**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/15)
+- [**5.16 React Bootstrap**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/16)
+- [**5.17 Fetching Data**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/17)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Concepts and Code Syntax
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. CSS Styling
+**What is CSS?**
+- CSS (Cascading Style Sheets) is used to style HTML and React components.
+- It controls layout, colors, fonts, spacing, and other visual aspects.
 
-## Expanding the ESLint configuration
+**What are CSS properties?**
+- Properties define the style for a selector (class, id, or tag).
+- Example of some common CSS properties:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```css
+.selector {
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+```
+
+---
+
+### 2. Bootstrap
+**What is Bootstrap?**
+- Bootstrap is a CSS framework for building responsive and mobile-first web interfaces quickly.
+- React-Bootstrap wraps Bootstrap components as React components.
+
+**Common Bootstrap components:**
+- Container, Row, Col, Card, Button, Modal, Alert
+
+**Example syntax:**
+```jsx
+import { Button, Card } from 'react-bootstrap';
+
+<Card className="shadow-sm mb-3">
+  <Card.Body>
+    <Card.Title>Title</Card.Title>
+    <Card.Text>Some text</Card.Text>
+    <Button variant="primary">Click Me</Button>
+  </Card.Body>
+</Card>
+```
+
+**Common classes:**
+- `mb-4`, `py-3`, `text-center`, `bg-primary`, `text-white`, `shadow`
+
+---
+
+### 3. Fetching Data using API
+**Calling fetch function:**
+```javascript
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+```
+
+**React Hooks:**
+- `useState` stores state variables
+- `useEffect` runs side effects like fetching data
+
+```javascript
+import { useState, useEffect } from 'react';
+
+const [data, setData] = useState([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://api.example.com/data');
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+```
+
+---
+
+## Checklist Before Submitting Lab
+
+- [ ] Layout containers, header, content, footer
+- [ ] Header classes: `bg-primary text-white py-3 mb-4 shadow`
+- [ ] SearchBar, UserList, UserCard, UserModal Bootstrap usage
+- [ ] Grid: `<Row>` + `<Col>` for UserCards
+- [ ] Button in UserCard and Modal
+- [ ] Define theme colors in `:root` in `Index.css`
+- [ ] Style `.app`, `.user-card`, `.user-avatar`, `.user-avatar-large`
+- [ ] Hover effects
+- [ ] Responsive layout
+- [ ] Import `useState` and `useEffect`
+- [ ] Create state variables: `users`, `filteredUsers`, `loading`, `error`, `searchTerm`, `showModal`, `selectedUser`
+- [ ] Fetch user data from API
+- [ ] Filter users by search term
+- [ ] Open and close modal
+- [ ] Handle loading and error

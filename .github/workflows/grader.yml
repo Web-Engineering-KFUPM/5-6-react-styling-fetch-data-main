@@ -48,7 +48,7 @@ jobs:
           DUE_DATE: ${{ env.DUE_DATE }}
         run: |
           echo "Running grader..."
-          node .5-6-react-styling-fetch-data/script/grade.cjs
+          node 5-6-react-styling-fetch-data/script/grade.cjs
 
       - name: Show feedback (first 200 lines)
         if: always()

@@ -1,0 +1,81 @@
+name: Run Autograder
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+    inputs:
+      due_date:
+        description: 'ISO due date (e.g. 2025-10-14T23:59:59Z). If empty, default inside script is used.'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies (if any)
+        run: |
+          # No dependencies required for the grader script. If your project needs build tools for linting, add them here.
+          echo "No npm install required for grader."
+
+      - name: Determine due date
+        id: due
+        run: |
+          if [ -n "${{ github.event.inputs.due_date }}" ]; then
+            echo "Using workflow input due_date: ${{ github.event.inputs.due_date }}"
+            echo "DUE_DATE=${{ github.event.inputs.due_date }}" >> $GITHUB_ENV
+          else
+            # You can change this default due date. Make sure instructors set it via workflow_dispatch or env.
+            DEFAULT_DUE='2025-12-31T23:59:59Z'
+            echo "Using default due date: $DEFAULT_DUE"
+            echo "DUE_DATE=$DEFAULT_DUE" >> $GITHUB_ENV
+          fi
+
+      - name: Run autograder script
+        env:
+          DUE_DATE: ${{ env.DUE_DATE }}
+        run: |
+          echo "Running grader..."
+          node ./script/grade.cjs
+
+      - name: Show feedback (first 200 lines)
+        if: always()
+        run: |
+          echo "=== feedback.txt ==="
+          head -n 200 script/feedback.txt || true
+
+      - name: Upload feedback artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: autograder-feedback
+          path: |
+            script/feedback.txt
+            script/grade.json
+
+      - name: Fail job if score below threshold (optional)
+        if: always()
+        run: |
+          # Optional enforcement: you can set a minimum passing score here. The step currently does nothing (keeps job green).
+          # To fail the job on low score, uncomment and adjust the following lines:
+          #
+          # SCORE=$(jq .score script/grade.json)
+          # if (( $(echo "$SCORE < 50" | bc -l) )); then
+          #   echo "Score $SCORE is below passing threshold (50) - failing workflow."
+          #   exit 1
+          # fi
+          echo "Grader finished. feedback artifact uploaded."

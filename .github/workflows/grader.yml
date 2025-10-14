@@ -29,7 +29,6 @@ jobs:
 
       - name: Install dependencies (if any)
         run: |
-          # No dependencies required for the grader script. If your project needs build tools for linting, add them here.
           echo "No npm install required for grader."
 
       - name: Determine due date
@@ -39,8 +38,7 @@ jobs:
             echo "Using workflow input due_date: ${{ github.event.inputs.due_date }}"
             echo "DUE_DATE=${{ github.event.inputs.due_date }}" >> $GITHUB_ENV
           else
-            # You can change this default due date. Make sure instructors set it via workflow_dispatch or env.
-            DEFAULT_DUE='2025-12-31T23:59:59Z'
+            DEFAULT_DUE='2025-10-15T20:59:00Z' # 2025-10-15 11:59 PM Riyadh time
             echo "Using default due date: $DEFAULT_DUE"
             echo "DUE_DATE=$DEFAULT_DUE" >> $GITHUB_ENV
           fi
@@ -50,7 +48,7 @@ jobs:
           DUE_DATE: ${{ env.DUE_DATE }}
         run: |
           echo "Running grader..."
-          node ./script/grade.cjs
+          node .5-6-react-styling-fetch-data/script/grade.cjs
 
       - name: Show feedback (first 200 lines)
         if: always()
@@ -70,12 +68,4 @@ jobs:
       - name: Fail job if score below threshold (optional)
         if: always()
         run: |
-          # Optional enforcement: you can set a minimum passing score here. The step currently does nothing (keeps job green).
-          # To fail the job on low score, uncomment and adjust the following lines:
-          #
-          # SCORE=$(jq .score script/grade.json)
-          # if (( $(echo "$SCORE < 50" | bc -l) )); then
-          #   echo "Score $SCORE is below passing threshold (50) - failing workflow."
-          #   exit 1
-          # fi
           echo "Grader finished. feedback artifact uploaded."

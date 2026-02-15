@@ -10,9 +10,9 @@ In this lab, students will learn to:
 - Fetch and display data from an API using React hooks (`useState` and `useEffect`).
 
 ## Reading Assignment
-- [**5.15 Styling**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/15)
-- [**5.16 React Bootstrap**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/16)
-- [**5.17 Fetching Data**](https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/5/section/17)
+- 5.15 Styling
+- 5.16 React Bootstrap
+- 5.17 Fetching Data
 
 ---
 

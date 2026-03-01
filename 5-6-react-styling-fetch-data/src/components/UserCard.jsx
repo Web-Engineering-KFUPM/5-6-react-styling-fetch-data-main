@@ -1,27 +1,26 @@
-import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import React from "react";
+import { Card, Button } from "react-bootstrap";
 
 function UserCard({ user, onUserClick }) {
   return (
     <Card className="user-card">
       <Card.Body>
-        <div>
-          <div className="user-avatar">
-            {user.name.charAt(0)}
-          </div>
-        </div>
+        <div className="user-avatar">{user.name.charAt(0)}</div>
 
-        <Card.Title>{user.name}</Card.Title>
+        <Card.Title className="mt-3">{user.name}</Card.Title>
         <Card.Text>
-          <strong>Username:</strong> {user.username}<br />
-          <strong>Email:</strong> {user.email}<br />
+          <strong>Username:</strong> {user.username}
+          <br />
+          <strong>Email:</strong> {user.email}
+          <br />
           <strong>Phone:</strong> {user.phone}
         </Card.Text>
-      {/* Buttotn*/}
-      
+
+        {/* TODO 3.1: Add ONE <Button> here (text: "View Details") */}
+        {/* TODO 3.1: onClick MUST call onUserClick and pass the current user object */}
       </Card.Body>
     </Card>
-  )
+  );
 }
 
-export default UserCard
+export default UserCard;

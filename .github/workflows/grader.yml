@@ -19,7 +19,7 @@ jobs:
           node-version: "20"
 
       - name: Run autograder
-        run: node 5-5-react-route-form/scripts/grade.cjs
+        run: node 5-6-react-styling-fetch-data/scripts/grade.cjs
 
       - name: Upload grading artifacts
         uses: actions/upload-artifact@v4
